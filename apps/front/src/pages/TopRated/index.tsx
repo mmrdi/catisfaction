@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react"
+import { FaHeart } from "react-icons/fa"
+import { ImageItem } from "../../ui/ImageItem"
 import { getImages } from "../../services/api.service"
+import { Gallery } from "./styled"
 
 const TopRated = () => {
     const [images, setImages] = useState([])
@@ -14,11 +17,13 @@ const TopRated = () => {
     }, [])
 
     return (
-        <div>
+        <div style={{ flex: 1 }}>
             <h1>Top Rated Page</h1>
-            {images.map((image: any) => (
-                <div>{image.id}</div>
-            ))}
+            <Gallery size="400px">
+                {images.map((image: any) => (
+                    <ImageItem image={image} key={image.id} />
+                ))}
+            </Gallery>
         </div>
     )
 }
