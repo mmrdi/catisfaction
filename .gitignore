@@ -1,0 +1,37 @@
+# Node modules
+node_modules/
+.pnpm/
+.pnpm-cache/
+
+# pnpm store
+.pnpm-store/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+
+# Yarn / npm lock files (to ignore if using pnpm)
+yarn.lock
+package-lock.json
+
+# Build directories (ajoute ou modifie selon ta configuration de build)
+dist/
+build/
+out/
+coverage/
+
+# Temporary files (systèmes divers de cache ou fichiers temporaires)
+*.swp
+*.swo
+
+# .env files (si tu veux éviter de pousser des fichiers de configuration sensibles)
+.env
+.env.local
+.env.*.local
