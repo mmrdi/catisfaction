@@ -1,7 +1,7 @@
 import { FaHeart } from "react-icons/fa"
 import { type Image } from "@shared/types"
 
-const ImageItem = ({ image }) => {
+const ImageItem = ({ image }: { image: Image }) => {
     return (
         <div>
             <img src={image.url} alt={image.id} />
