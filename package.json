@@ -6,9 +6,14 @@
     "scripts": {
         "dev:api": "pnpm --filter ./apps/api run dev",
         "dev:front": "pnpm --filter ./apps/front run dev",
+        "dev": "concurrently \"pnpm run dev:api\" \"pnpm run dev:front\"",
+        "build": "concurrently \"pnpm --filter ./apps/api run build\" \"pnpm --filter ./apps/front run build\"",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "concurrently": "^9.1.2"
+    }
 }
