@@ -8,4 +8,12 @@ const healthCheck = (): Promise<boolean> =>
         .then(response => response.ok)
         .catch(() => false)
 
-export { healthCheck }
+const getImages = () =>
+    api
+        .get("api/images")
+        .then(response => response.json())
+        .catch(err => {
+            console.log(err)
+        })
+
+export { healthCheck, getImages }
