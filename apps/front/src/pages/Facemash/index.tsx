@@ -10,7 +10,7 @@ const Facemash = () => {
             </LogoWrapper>
 
             <SidesWrapper>
-                <Side separator={true}>
+                <Side $separator={true}>
                     <h2>chat 1</h2>
                 </Side>
                 <Side>

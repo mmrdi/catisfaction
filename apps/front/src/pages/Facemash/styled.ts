@@ -20,11 +20,11 @@ export const SidesWrapper = styled.div`
     alignitems: center;
 `
 
-export const Side = styled.div<{ separator?: boolean }>`
+export const Side = styled.div<{ $separator?: boolean }>`
     display: flex;
     flex: 1;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    ${({ separator }) => separator && "border-right-style: dashed"}
+    ${({ $separator }) => $separator && "border-right-style: dashed"}
 `
