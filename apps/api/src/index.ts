@@ -4,6 +4,7 @@ dotenv.config({ path: "../../.env" })
 import express from "express"
 import cors from "cors"
 
+import { initialization } from "./bootstraps"
 import { config } from "./config"
 import { router } from "./router"
 
@@ -15,6 +16,4 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use("/api", router)
 
-app.listen(config.API_PORT, () =>
-    console.log(`Server listening on port ${config.API_PORT}`)
-)
+app.listen(config.API_PORT, initialization)
