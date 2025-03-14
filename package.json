@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "dev:api": "pnpm --filter ./apps/api run dev",
+        "dev:front": "pnpm --filter ./apps/front run dev",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
