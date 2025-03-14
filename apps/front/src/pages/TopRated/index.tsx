@@ -14,7 +14,7 @@ const TopRated = () => {
                 setImages(data)
             }
         })()
-    }, [])
+    }, [getImages, setImages])
 
     return (
         <div style={{ flex: 1, paddingTop: 150 }}>
