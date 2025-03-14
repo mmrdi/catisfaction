@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
-import { FaHeart } from "react-icons/fa"
 import { ImageItem } from "../../ui/ImageItem"
 import { getImages } from "../../services/api.service"
 import { Gallery } from "./styled"
+import { type Image } from "@shared/types"
 
 const TopRated = () => {
-    const [images, setImages] = useState([])
+    const [images, setImages] = useState<Image[]>([])
 
     useEffect(() => {
         ;(async () => {
-            const data: any = await getImages()
+            const data = await getImages()
             if (data?.length) {
                 setImages(data)
             }
@@ -20,7 +20,7 @@ const TopRated = () => {
         <div style={{ flex: 1 }}>
             <h1>Top Rated Page</h1>
             <Gallery size="400px">
-                {images.map((image: any) => (
+                {images.map(image => (
                     <ImageItem image={image} key={image.id} />
                 ))}
             </Gallery>
