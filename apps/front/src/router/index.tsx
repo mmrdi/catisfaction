@@ -1,16 +1,19 @@
-import { createBrowserRouter, Outlet } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom"
+import { Layout } from "../pages/Layout"
+import { Facemash } from "../pages/Facemash"
+import { TopRated } from "../pages/TopRated"
 
 const mainRouter = createBrowserRouter([
     {
         path: "/",
-        element: <Outlet />,
+        element: <Layout />,
         children: [
             {
                 index: true,
                 path: "/",
-                element: <>facemash page</>
+                element: <Facemash />
             },
-            { path: "/top", element: <>Top rated page</> }
+            { path: "/top", element: <TopRated /> }
         ]
     }
 ])
