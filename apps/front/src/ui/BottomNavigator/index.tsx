@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom"
-import { BNStyled } from "./bottomNavigator.style"
+import { BNStyled } from "./styled"
 
 const BottomNavigator = () => {
     const location = useLocation()
