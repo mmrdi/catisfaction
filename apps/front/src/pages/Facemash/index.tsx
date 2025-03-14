@@ -1,14 +1,8 @@
-import logo from "../../assets/cat.png"
-import { LogoWrapper, SidesWrapper, Side } from "./styled"
+import { SidesWrapper, Side } from "./styled"
 
 const Facemash = () => {
     return (
         <>
-            <LogoWrapper>
-                <img src={logo} alt="logo-catisfactiob" />
-                <div>Catisfaction</div>
-            </LogoWrapper>
-
             <SidesWrapper>
                 <Side $separator={true}>
                     <h2>chat 1</h2>

@@ -9,7 +9,7 @@ export const Gallery = styled.div.attrs<{ size?: string }>(props => ({
         auto-fill,
         minmax(${({ size }) => size}, 1fr)
     );
-    gap: 5px;
+    gap: 15px;
 
     & img {
         width: 100%;
@@ -17,7 +17,10 @@ export const Gallery = styled.div.attrs<{ size?: string }>(props => ({
         object-fit: cover;
         border-radius: 25px;
     }
-    & div > div {
+    & > div {
+        height: ${({ size }) => size};
+    }
+    & > div > div {
         text-align: center;
         background-color: rgba(255, 255, 255, 0.8);
         height: 70px;

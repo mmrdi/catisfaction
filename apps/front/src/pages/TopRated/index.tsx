@@ -17,7 +17,7 @@ const TopRated = () => {
     }, [])
 
     return (
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, paddingTop: 150 }}>
             <h1>Top Rated Page</h1>
             <Gallery size="400px">
                 {images.map(image => (
