@@ -1,5 +1,5 @@
 import { Response, Router } from "express"
-import { getImages } from "../controllers/image.controller"
+import { getImages, getImagesForDuel } from "../controllers/image.controller"
 
 const router: Router = Router()
 
@@ -8,5 +8,7 @@ router.get("/healthcheck", (_, res: Response<boolean>) => {
 })
 
 router.get("/images", getImages)
+
+router.get("/images/duel", getImagesForDuel)
 
 export { router }

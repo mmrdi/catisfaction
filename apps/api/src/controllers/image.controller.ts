@@ -7,4 +7,45 @@ const getImages = async (req: Request, res: Response) => {
     res.json(images)
 }
 
-export { getImages }
+/**
+ * @TODO check participation rate to favor the less represented ?? elo/thompson/custom ?
+ * @TODO check aggregate facet totalParticipations
+ */
+const getImagesForDuel = async (req: Request, res: Response) => {
+    let { excludeIds } = req.query
+    excludeIds = excludeIds?.toString().split(",") || []
+
+    const result = await ImageModel.aggregate([
+        {
+            $facet: {
+                totalParticipations: [
+                    {
+                        $group: {
+                            _id: null,
+                            total: { $sum: "$participations" }
+                        }
+                    }
+                ],
+                images: [
+                    {
+                        $match: {
+                            _id: { $nin: excludeIds }
+                        }
+                    },
+                    {
+                        $sample: { size: 2 }
+                    }
+                ]
+            }
+        }
+    ])
+
+    res.json({
+        data: result[0]?.images || [],
+        meta: {
+            totalParticipations: result[0]?.totalParticipations[0]?.total || 0
+        }
+    })
+}
+
+export { getImages, getImagesForDuel }
