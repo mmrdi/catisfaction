@@ -2,6 +2,9 @@ import { Request, Response } from "express"
 import { type Image } from "@shared/types"
 import { ImageModel } from "../models/image.model"
 
+/**
+ * @TODO order by upvotes
+ */
 const getImages = async (req: Request, res: Response) => {
     const images: Image[] = await ImageModel.find()
     res.json(images)
@@ -48,4 +51,19 @@ const getImagesForDuel = async (req: Request, res: Response) => {
     })
 }
 
-export { getImages, getImagesForDuel }
+const handleVoteResult = async (req: Request, res: Response) => {
+    const { winnerId, loserId } = req.body
+
+    if (!winnerId || !loserId) {
+        throw new Error(`Missing body parameters`)
+    }
+
+    await ImageModel.findByIdAndUpdate(winnerId, {
+        $inc: { upvotes: 1, participations: 1 }
+    })
+    await ImageModel.findByIdAndUpdate(loserId, { $inc: { participations: 1 } })
+
+    res.status(204).end()
+}
+
+export { getImages, getImagesForDuel, handleVoteResult }

@@ -6,6 +6,7 @@ import { getImagesDuel } from "../../services/api.service"
 
 const Facemash = () => {
     const [images, setImages] = useState<[Image, Image] | []>([])
+    const imageSize = 400
 
     const fetchDuel = async (excludeIds?: string) => {
         const data = await getImagesDuel(excludeIds)
@@ -36,14 +37,14 @@ const Facemash = () => {
                 <ImageItem
                     image={images[0]}
                     onClick={handleUpVote(images[0])}
-                    size={400}
+                    size={imageSize}
                 />
             </Side>
             <Side>
                 <ImageItem
                     image={images[1]}
                     onClick={handleUpVote(images[1])}
-                    size={400}
+                    size={imageSize}
                 />
             </Side>
         </SidesWrapper>

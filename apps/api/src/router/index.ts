@@ -1,5 +1,9 @@
 import { Response, Router } from "express"
-import { getImages, getImagesForDuel } from "../controllers/image.controller"
+import {
+    getImages,
+    getImagesForDuel,
+    handleVoteResult
+} from "../controllers/image.controller"
 
 const router: Router = Router()
 
@@ -10,5 +14,7 @@ router.get("/healthcheck", (_, res: Response<boolean>) => {
 router.get("/images", getImages)
 
 router.get("/images/duel", getImagesForDuel)
+
+router.patch("/images/duel", handleVoteResult)
 
 export { router }
