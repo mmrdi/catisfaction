@@ -1,15 +1,16 @@
 import { Request, Response } from "express"
 import { type Image } from "@shared/types"
 import { ImageModel } from "../models/image.model"
-import { ObjectId } from "mongoose"
+import { Types } from "mongoose"
 
 /**
  * @TODO order by upvotes
  */
 const getImages = async (req: Request, res: Response) => {
-    const images = (await ImageModel.find().sort({
-        upvotes: "desc"
-    })) as Image[]
+    const images: (Omit<Image, "_id"> & { _id: Types.ObjectId | string })[] =
+        await ImageModel.find().sort({
+            upvotes: "desc"
+        })
 
     res.json(images)
 }

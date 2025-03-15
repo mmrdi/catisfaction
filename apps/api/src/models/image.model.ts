@@ -7,8 +7,8 @@ import { Schema, model } from "mongoose"
  * @property {number} [participations=0] - number of participations in a duel
  */
 const imageSchema = new Schema({
-    id: String,
-    url: String,
+    id: { type: String, required: true },
+    url: { type: String, required: true },
     upvotes: { type: Number, default: 0 },
     participations: { type: Number, default: 0 }
 })
