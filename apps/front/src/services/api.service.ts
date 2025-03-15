@@ -35,4 +35,13 @@ const getImagesDuel = (excludeIds?: string) =>
             return { data: [], meta: { participations: 0 } }
         })
 
-export { healthCheck, getImages, getImagesDuel }
+const sendDuel = (data: { winnerId: string; loserId: string }) =>
+    api
+        .patch("api/images/duel", { json: data })
+        // .then(response => response.json() as Promise<Image>)
+        .catch(err => {
+            console.log(err)
+            return null
+        })
+
+export { healthCheck, getImages, getImagesDuel, sendDuel }

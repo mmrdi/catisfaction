@@ -1,6 +1,7 @@
 import { styled } from "styled-components"
 
-export const ImageStyled = styled.div<{ size: number }>`
+export const ImageStyled = styled.div<{ size: number; onClick?: Function }>`
+    ${({ onClick }) => !!onClick && "cursor: pointer"};
     & img {
         width: 100%;
         height: ${({ size }) => `${size}px`};

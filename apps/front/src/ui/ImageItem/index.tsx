@@ -9,11 +9,18 @@ const ImageItem = ({
     size = 200
 }: {
     image?: Image
-    onClick?: () => void
+    onClick?: Promise<() => Promise<void>>
     size: number
 }) => {
+    const handleClick = async () => {
+        if (onClick) {
+            const clickHandler = await onClick
+            clickHandler()
+        }
+    }
+
     return (
-        <ImageStyled onClick={image && onClick} size={size}>
+        <ImageStyled onClick={onClick && handleClick} size={size}>
             <img src={image?.url || logo} alt={image?.id} />
             <div>
                 {image && (

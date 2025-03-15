@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { type Image } from "@shared/types"
 import { SidesWrapper, Side } from "./styled"
 import { ImageItem } from "../../ui/ImageItem"
-import { getImagesDuel } from "../../services/api.service"
+import { getImagesDuel, sendDuel } from "../../services/api.service"
 
 const Facemash = () => {
     const [images, setImages] = useState<[Image, Image] | []>([])
@@ -21,15 +21,19 @@ const Facemash = () => {
         fetchDuel()
     }, [])
 
-    const handleUpVote = (image?: Image) => async () => {
-        if (!image) {
-            throw new Error("Image cannot be handled")
-        }
-        const mashed = images.find(img => img._id !== image._id)
-        if (mashed && image) {
-            fetchDuel([image._id, mashed._id].join(","))
-        }
-    }
+    const handleUpVote = useCallback(
+        async (image?: Image) => async () => {
+            if (!image) {
+                throw new Error("Image cannot be handled")
+            }
+            const loser = images.find(img => img._id !== image._id)
+            if (loser && image) {
+                await sendDuel({ winnerId: image._id, loserId: loser._id })
+                await fetchDuel([image._id, loser._id].join(","))
+            }
+        },
+        [images]
+    )
 
     return (
         <SidesWrapper>
