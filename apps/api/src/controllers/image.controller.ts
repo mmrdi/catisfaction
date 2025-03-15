@@ -1,12 +1,16 @@
 import { Request, Response } from "express"
 import { type Image } from "@shared/types"
 import { ImageModel } from "../models/image.model"
+import { ObjectId } from "mongoose"
 
 /**
  * @TODO order by upvotes
  */
 const getImages = async (req: Request, res: Response) => {
-    const images: Image[] = await ImageModel.find()
+    const images = (await ImageModel.find().sort({
+        upvotes: "desc"
+    })) as Image[]
+
     res.json(images)
 }
 
@@ -53,7 +57,6 @@ const getImagesForDuel = async (req: Request, res: Response) => {
 
 const handleVoteResult = async (req: Request, res: Response) => {
     const { winnerId, loserId } = req.body
-
     if (!winnerId || !loserId) {
         throw new Error(`Missing body parameters`)
     }
