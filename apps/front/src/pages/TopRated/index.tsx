@@ -6,6 +6,7 @@ import { type Image } from "@shared/types"
 
 const TopRated = () => {
     const [images, setImages] = useState<Image[]>([])
+    const imageSize = 400
 
     useEffect(() => {
         ;(async () => {
@@ -19,9 +20,9 @@ const TopRated = () => {
     return (
         <div style={{ flex: 1, paddingTop: 150 }}>
             <h1>Top Rated Page</h1>
-            <Gallery size="400px">
+            <Gallery size={imageSize}>
                 {images.map(image => (
-                    <ImageItem image={image} key={image.id} />
+                    <ImageItem image={image} key={image.id} size={imageSize} />
                 ))}
             </Gallery>
         </div>

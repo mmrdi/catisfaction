@@ -18,4 +18,21 @@ const getImages = (): Promise<Image[]> =>
             return []
         })
 
-export { healthCheck, getImages }
+const getImagesDuel = (excludeIds?: string) =>
+    api
+        .get(`api/images/duel`, {
+            ...(excludeIds && { searchParams: excludeIds })
+        })
+        .then(
+            response =>
+                response.json() as Promise<{
+                    data: Image[]
+                    meta: { particitpations: number }
+                }>
+        )
+        .catch(err => {
+            console.log(err)
+            return { data: [], meta: { participations: 0 } }
+        })
+
+export { healthCheck, getImages, getImagesDuel }

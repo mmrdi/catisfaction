@@ -14,5 +14,5 @@ export const Side = styled.div<{ $separator?: boolean }>`
     height: 100vh;
     justify-content: center;
     align-items: center;
-    ${({ $separator }) => $separator && "border-right-style: dashed"}
+    ${({ $separator }) => $separator && "border-right-style: dashed"};
 `

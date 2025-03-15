@@ -1,23 +1,35 @@
 import { FaHeart } from "react-icons/fa"
 import { type Image } from "@shared/types"
+import logo from "../../assets/cat.png"
+import { ImageStyled } from "./styled"
 
-const ImageItem = ({ image }: { image: Image }) => {
+const ImageItem = ({
+    image,
+    onClick,
+    size = 200
+}: {
+    image?: Image
+    onClick?: () => void
+    size: number
+}) => {
     return (
-        <div>
-            <img src={image.url} alt={image.id} />
+        <ImageStyled onClick={image && onClick} size={size}>
+            <img src={image?.url || logo} alt={image?.id} />
             <div>
-                <span
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 5
-                    }}
-                >
-                    {image.upvotes}
-                    <FaHeart />
-                </span>
+                {image && (
+                    <span
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 5
+                        }}
+                    >
+                        {image.upvotes}
+                        <FaHeart />
+                    </span>
+                )}
             </div>
-        </div>
+        </ImageStyled>
     )
 }
 
